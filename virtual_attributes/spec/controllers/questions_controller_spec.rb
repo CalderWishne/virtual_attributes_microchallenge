@@ -14,9 +14,10 @@ describe QuestionsController do
 
   describe "#create" do
     it "should create a new question with the params" do
-      question_params = { question: { title: "My question", content: "question content", tags: ["tag_1", "tag_2", "tag_3"] } }
+      question_params = { question: { title: "My question", content: "question content", tag_list: "tag1,tag2,tag3" } }
 
       expect { post :create, question_params }.to change { Question.count }.by(1)
+      expect { post :create, question_params }.to change { Tag.count }.by(3)
     end
   end
 end
